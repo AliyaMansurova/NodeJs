@@ -1,9 +1,10 @@
 const fs = require('fs');
 const EventEmitter = require('events');
+const _ = require('lodash');
 
 class DirWatcher extends EventEmitter {
   watch(path, delay){
-    const csvFiles = [];
+    let csvFiles = [];
 
     setInterval(() => {
       fs.readdir(path, (error, result) => {
@@ -11,12 +12,17 @@ class DirWatcher extends EventEmitter {
           console.error(error.message);
         }
         if(result) {
-          result.forEach(file => {
-            if(!csvFiles.includes(file)) {
-              csvFiles.push(file);
+          const diffAdd = _.differenceWith(result, csvFiles, _.isEqual);
+          const diffDelete = _.differenceWith(csvFiles, result, _.isEqual);
+          if(diffAdd.length || diffDelete.length) {
+            csvFiles = [];
+            csvFiles.push(...result);
+          }
+          if(diffAdd.length) {
+            diffAdd.forEach(file => {
               this.emit('dirwatcher:changed', file);
-            }
-          });
+            })
+          }
         }
       });
     }, delay);
