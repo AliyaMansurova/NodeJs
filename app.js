@@ -1,5 +1,5 @@
-import config from './config/config';
-import { User, Product } from './models';
+// import config from './config/config';
+// import { User, Product } from './models';
 import DirWatcher from './src/dirwatcher';
 import Importer from './src/importer';
 

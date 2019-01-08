@@ -3,9 +3,6 @@ const _ = require('lodash');
 const fs = require('fs');
 
 class Importer {
-  constructor(){
-    this.processed = [];
-  }
 
   import(path){
     const data = [];
