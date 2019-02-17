@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const hardCodedUser = {
+const hardcodedUser = {
   "id": "1",
   "name": "User1",
   "email": "email1@mail.ru",
@@ -9,15 +9,26 @@ const hardCodedUser = {
 
 const authenticate = (req, res) => {
   const { username, password } = req.body;
-
-  if (!hardCodedUser || hardCodedUser.password !== password) {
+  if (!username) {
     res.status(404).send({
       code: 404,
       message: 'Not Found',
-      data: { error: 'Wrong username or password' }
+      data: { error: 'Username wasn`t entered' }
+    });
+  } else if (!password) {
+    res.status(404).send({
+      code: 404,
+      message: 'Not Found',
+      data: { error: 'Password wasn`t entered' }
+    });
+  } else if (hardcodedUser.password !== password) {
+    res.status(404).send({
+      code: 404,
+      message: 'Not Found',
+      data: { error: 'Incorrect password' }
     });
   } else {
-    const user = { name: username, email: hardCodedUser.email };
+    const user = { name: username, email: hardcodedUser.email };
     const token = jwt.sign(user, 'secret', {expiresIn: 360});
     res.status(200).send({
       code: 200,

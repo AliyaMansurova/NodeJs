@@ -7,7 +7,7 @@ const checkToken = (req, res, next) => {
       if (err) {
         res.status(403).send({success: false, message: 'Failed to authenticate token.'})
       } else {
-        next(encoded);
+        next();
       }
     })
   } else {
