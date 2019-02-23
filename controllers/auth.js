@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { secret } from '../config/config.json';
 
 const hardcodedUser = {
   "id": "1",
@@ -27,9 +28,15 @@ const authenticate = (req, res) => {
       message: 'Not Found',
       data: { error: 'Incorrect password' }
     });
-  } else {
+  } else if (hardcodedUser.name !== username) {
+    res.status(404).send({
+      code: 404,
+      message: 'Not Found',
+      data: { error: 'Incorrect username' }
+    });
+  } else if (username === hardcodedUser.name && password === hardcodedUser.password) {
     const user = { name: username, email: hardcodedUser.email };
-    const token = jwt.sign(user, 'secret', {expiresIn: 360});
+    const token = jwt.sign(user, secret, {expiresIn: 360});
     res.status(200).send({
       code: 200,
       message: 'OK',
