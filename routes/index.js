@@ -34,4 +34,7 @@ router.route('/products/:id/reviews')
 router.route('/users')
   .get(checkToken, users.getUsers);
 
+router.route('/users/:id')
+  .get(checkToken, users.getUserById);
+
 module.exports = router;
