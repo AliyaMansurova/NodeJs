@@ -34,7 +34,7 @@ const authenticate = (req, res) => {
       message: 'Not Found',
       data: { error: 'Incorrect username' }
     });
-  } else if (username === hardcodedUser.name && password === hardcodedUser.password) {
+  } else {
     const user = { name: username, email: hardcodedUser.email };
     const token = jwt.sign(user, secret, {expiresIn: 360});
     res.status(200).send({
