@@ -1,9 +1,9 @@
 import {
   getAll,
-  getOne
+  getOne,
 } from '../services/userService';
 
-export const getUsers = async(req, res, next) => {
+export const getUsers = async (req, res, next) => {
   try {
     const users = await getAll();
     return res.json(users);
@@ -11,7 +11,7 @@ export const getUsers = async(req, res, next) => {
     return next(err);
   }
 };
-export const getUserById = async(req, res, next) => {
+export const getUserById = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const user = await getOne(userId);
@@ -19,10 +19,4 @@ export const getUserById = async(req, res, next) => {
   } catch (err) {
     return next(err);
   }
-};
-
-
-module.exports = {
-  getUsers,
-  getUserById
 };

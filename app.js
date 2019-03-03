@@ -4,12 +4,12 @@
 // import Importer from './src/importer';
 import express from 'express';
 import bodyParser from 'body-parser';
+import Sequelize from 'sequelize';
 import cookieParser from './middlewares/cookie-parser';
 import queryParser from './middlewares/query-parser';
 import router from './routes';
-//import { Client } from 'pg';
-import Sequelize from 'sequelize';
-import { postgres_config, postgres_db, postgres_uri} from './config/config.json';
+// import { Client } from 'pg';
+import { postgres_config, postgres_db, postgres_uri } from './config/config.json';
 
 const app = express();
 
@@ -23,7 +23,7 @@ sequelize
   .then(() => {
     console.log(`Successfully connected to PostgreSQL with sequelize on ${postgres_uri}/${postgres_db}`);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(`There was a db connection error\n ${err}`);
   });
 
@@ -46,8 +46,8 @@ module.exports = app;
 //   importer.import(`./data/${fileName}`).then(result => {
 //     console.log(result);
 //   }).catch(error => console.error(error));
-  // const result = importer.importSync(`./data/${fileName}`)
-  // console.log(result)
+// const result = importer.importSync(`./data/${fileName}`)
+// console.log(result)
 // });
 
 // const user = new User();

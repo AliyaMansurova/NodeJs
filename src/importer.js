@@ -3,24 +3,23 @@ const _ = require('lodash');
 const fs = require('fs');
 
 class Importer {
-
-  import(path){
+  import(path) {
     const data = [];
     return new Promise((resolve, reject) => {
       csv()
-      .fromFile(path)
-      .then((json) => {
-        data.push(json);
-        resolve(data)
-      })
-      .catch((error) => {
-        console.error('import csv error!', err);
-        reject(error)
-      })
+        .fromFile(path)
+        .then((json) => {
+          data.push(json);
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error('import csv error!', err);
+          reject(error);
+        });
     });
   }
 
-  importSync(path){
+  importSync(path) {
     const cvsStr = fs.readFileSync(path);
     const rows = cvsStr.toString().split('\n');
     const keys = rows.shift().split(',');

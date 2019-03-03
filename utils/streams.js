@@ -8,7 +8,7 @@ function reverse() {
   process.stdin.on('data', (data) => {
     process.stdout.write(data.toString().split('').reverse().join(''));
   });
-};
+}
 
 function transform() {
   const transformStream = through(write, end);
@@ -24,31 +24,31 @@ function transform() {
   }
 
   process.stdin.pipe(transformStream).pipe(process.stdout);
-};
+}
 
 function outputFile(filePath) {
   fs.createReadStream(filePath).pipe(process.stdout);
-};
+}
 
 function convertFromFile(filePath) {
-  if(!filePath.endsWith(".csv")) {
-    console.log("File should be with .csv format");
+  if (!filePath.endsWith('.csv')) {
+    console.log('File should be with .csv format');
   }
   fs.createReadStream(filePath)
     .pipe(csv())
     .pipe(process.stdout);
-};
+}
 
 function convertToFile(filePath) {
-  if(!filePath.endsWith(".csv")) {
-    console.log("File should be with .csv format");
+  if (!filePath.endsWith('.csv')) {
+    console.log('File should be with .csv format');
   }
   const jsonFileName = filePath.replace('.csv', '.json');
 
   fs.createReadStream(filePath)
     .pipe(csv())
     .pipe(fs.createWriteStream(jsonFileName));
-};
+}
 
 function cssBundler(filePath) {
   const writer = fs.createWriteStream(path.join(filePath, 'bundle.css'));
@@ -59,7 +59,7 @@ function cssBundler(filePath) {
     if (files.length) {
       const cssFiles = files.filter(file => file.match(/.css/) && file !== 'bundle.css');
 
-      cssFiles.forEach(file => {
+      cssFiles.forEach((file) => {
         fs.readFile(path.join(filePath, file), 'utf-8', (err, data) => {
           if (err) throw err;
           writer.write(`${data}\n`);
@@ -69,7 +69,7 @@ function cssBundler(filePath) {
       console.log('Directory is empty');
     }
   });
-};
+}
 
 function printHelp() {
   console.log(`You can use following commands:
@@ -78,7 +78,7 @@ function printHelp() {
     -p=name, --path=name      provide a path for using with 'bundleCss' action
     -h, --help                show this message`);
   process.exit();
-};
+}
 
 function specify(option) {
   console.log(`You should specify a ${option} option.`);
@@ -99,29 +99,29 @@ switch (program.action) {
     transform();
     break;
   case 'outputFile':
-    if(program.file) outputFile(program.file);
-    else specify("file");
+    if (program.file) outputFile(program.file);
+    else specify('file');
     break;
   case 'convertFromFile':
-    if(program.file) convertFromFile(program.file);
-    else specify("file");
+    if (program.file) convertFromFile(program.file);
+    else specify('file');
     break;
   case 'convertToFile':
-    if(program.file) convertToFile(program.file);
-    else specify("file");
+    if (program.file) convertToFile(program.file);
+    else specify('file');
     break;
   case 'cssBundler':
-    if(program.path) cssBundler(program.path);
-    else specify("path");
+    if (program.path) cssBundler(program.path);
+    else specify('path');
     break;
   default:
-    printHelp()
-};
+    printHelp();
+}
 
 module.exports = {
   reverse,
   transform,
   outputFile,
   convertFromFile,
-  convertToFile
+  convertToFile,
 };

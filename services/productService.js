@@ -1,26 +1,19 @@
 const Models = require('../sequelize/models');
 
-export async function getAll() {
-  return Models.Product.findAll({ where: {}});
-}
+export const getAll = () => Models.Product.findAll({ where: {} });
 
-export async function getOne(productId) {
-  return Models.Product.findAll({
-    where: {
-      id: productId,
-    },
-  });
-}
+export const getOne = productId => Models.Product.findAll({
+  where: {
+    id: productId,
+  },
+});
 
-export async function create(data) {
-  console.log(data);
+export const create = (data) => {
   Models.Product.create(data);
-}
+};
 
-export async function getReviews(productId) {
-  return Models.Review.findAll({
-    where: {
-      product_id: productId,
-    },
-  });
-}
+export const getReviews = productId => Models.Review.findAll({
+  where: {
+    productId,
+  },
+});

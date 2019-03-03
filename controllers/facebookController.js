@@ -11,14 +11,13 @@ export const facebookRedirect = (req, res, next) => {
       successRedirect: '/',
       failureRedirect: '/auth',
     },
-    (err, user, token) => {
+    (err, user) => {
       if (err) res.send(err);
 
-      req.login(user, err => {
-        if (err) res.send(err);
+      req.login(user, (error) => {
+        if (error) res.send(error);
 
         res.redirect('/');
       });
-    }
-  )(req, res, next);
+    })(req, res, next);
 };

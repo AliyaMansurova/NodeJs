@@ -2,10 +2,10 @@ import {
   getAll,
   getOne,
   getReviews,
-  create
+  create,
 } from '../services/productService';
 
-export const getAllProducts = async(req, res, next) => {
+export const getAllProducts = async (req, res, next) => {
   try {
     const products = await getAll();
     return res.json(products);
@@ -14,9 +14,8 @@ export const getAllProducts = async(req, res, next) => {
   }
 };
 
-export const createProduct = async(req, res, next) => {
+export const createProduct = async (req, res, next) => {
   try {
-    console.log(req.body)
     const product = req.body;
     await create(product);
     return res.json(product);
@@ -25,7 +24,7 @@ export const createProduct = async(req, res, next) => {
   }
 };
 
-export const getProductById = async(req, res, next) => {
+export const getProductById = async (req, res, next) => {
   try {
     const productId = req.params.id;
     const product = await getOne(productId);
@@ -35,7 +34,7 @@ export const getProductById = async(req, res, next) => {
   }
 };
 
-export const getReviewByProduct = async(req, res, next) => {
+export const getReviewByProduct = async (req, res, next) => {
   try {
     const productId = req.params.id;
     const reviews = await getReviews(productId);
@@ -44,11 +43,3 @@ export const getReviewByProduct = async(req, res, next) => {
     return next(err);
   }
 };
-
-module.exports = {
-  getAllProducts,
-  getProductById,
-  createProduct,
-  getReviewByProduct
-};
-

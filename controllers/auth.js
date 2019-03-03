@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken';
 import { secret } from '../config/config.json';
 
 const hardcodedUser = {
-  "id": "1",
-  "name": "User1",
-  "email": "email1@mail.ru",
-  "password": "password1"
+  id: '1',
+  name: 'User1',
+  email: 'email1@mail.ru',
+  password: 'password1',
 };
 
 const authenticate = (req, res) => {
@@ -14,38 +14,38 @@ const authenticate = (req, res) => {
     res.status(404).send({
       code: 404,
       message: 'Not Found',
-      data: { error: 'Username wasn`t entered' }
+      data: { error: 'Username wasn`t entered' },
     });
   } else if (!password) {
     res.status(404).send({
       code: 404,
       message: 'Not Found',
-      data: { error: 'Password wasn`t entered' }
+      data: { error: 'Password wasn`t entered' },
     });
   } else if (hardcodedUser.password !== password) {
     res.status(404).send({
       code: 404,
       message: 'Not Found',
-      data: { error: 'Incorrect password' }
+      data: { error: 'Incorrect password' },
     });
   } else if (hardcodedUser.name !== username) {
     res.status(404).send({
       code: 404,
       message: 'Not Found',
-      data: { error: 'Incorrect username' }
+      data: { error: 'Incorrect username' },
     });
   } else if (username === hardcodedUser.name && password === hardcodedUser.password) {
     const user = { name: username, email: hardcodedUser.email };
-    const token = jwt.sign(user, secret, {expiresIn: 360});
+    const token = jwt.sign(user, secret, { expiresIn: 360 });
     res.status(200).send({
       code: 200,
       message: 'OK',
       data: { user },
-      token
+      token,
     });
   }
 };
 
 module.exports = {
-  authenticate
+  authenticate,
 };
