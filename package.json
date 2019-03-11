@@ -5,17 +5,19 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ."
   },
   "engines": {
-    "node": ">=9.7.0"
+    "node": ">=9.7.0",
+    "npm": ">=5.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AliyaMansurova/NodeJs.git"
   },
   "author": "Aliya_Mansurova <aliya_mansurova@epam.com>",
-  "license": "ISC",
+  "license": "UNLICENSED",
+  "private": true,
   "bugs": {
     "url": "https://github.com/AliyaMansurova/NodeJs/issues"
   },
@@ -29,6 +31,7 @@
     "eslint": "^5.15.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
+    "husky": "^1.3.1",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
@@ -49,5 +52,10 @@
     "sequelize": "^4.42.0",
     "through2": "^3.0.0",
     "uuid": "^3.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
   }
 }
