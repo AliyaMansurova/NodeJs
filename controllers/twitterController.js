@@ -7,16 +7,17 @@ export const twitterAuth = (req, res, next) => {
 
 export const twitterRedirect = (req, res, next) => {
   passport.authenticate('twitter',
+    {
+      successRedirect: '/',
+      failureRedirect: '/auth',
+    },
     (err, user) => {
-      if (err || !user) {
-        return res.redirect('/auth');
-      }
-      req.login(user.name, (error) => {
+      if (err) res.send(err);
+
+      req.login(user, (error) => {
         if (error) res.send(error);
 
         res.redirect('/');
-
-        next();
       });
     })(req, res, next);
 };

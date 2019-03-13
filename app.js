@@ -9,7 +9,7 @@ import cookieParser from './middlewares/cookie-parser';
 import queryParser from './middlewares/query-parser';
 import router from './routes';
 // import { Client } from 'pg';
-import { postgres_config, postgres_db, postgres_uri } from './config/config.json';
+import { postgres_db, postgres_uri } from './config/config.json';
 
 const app = express();
 

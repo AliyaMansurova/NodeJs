@@ -10,17 +10,17 @@ export const googleAuth = (req, res, next) => {
 
 export const googleRedirect = (req, res, next) => {
   passport.authenticate('google',
+    {
+      successRedirect: '/',
+      failureRedirect: '/auth',
+    },
     (err, user) => {
-      if (err || !user) {
-        return res.redirect('/auth');
-      }
+      if (err) res.send(err);
 
-      req.login(user.displayName, { session: false }, (err) => {
-        if (err) res.send(err);
+      req.login(user, (error) => {
+        if (error) res.send(error);
 
         res.redirect('/');
-
-        next();
       });
     })(req, res, next);
 };

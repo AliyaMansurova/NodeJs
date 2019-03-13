@@ -11,8 +11,6 @@ function reverse() {
 }
 
 function transform() {
-  const transformStream = through(write, end);
-
   function write(chunk, enc, next) {
     const transformedChunk = chunk.toString().toUpperCase();
     this.push(transformedChunk);
@@ -23,6 +21,7 @@ function transform() {
     done();
   }
 
+  const transformStream = through(write, end);
   process.stdin.pipe(transformStream).pipe(process.stdout);
 }
 
@@ -60,8 +59,8 @@ function cssBundler(filePath) {
       const cssFiles = files.filter(file => file.match(/.css/) && file !== 'bundle.css');
 
       cssFiles.forEach((file) => {
-        fs.readFile(path.join(filePath, file), 'utf-8', (err, data) => {
-          if (err) throw err;
+        fs.readFile(path.join(filePath, file), 'utf-8', (error, data) => {
+          if (error) throw error;
           writer.write(`${data}\n`);
         });
       });
