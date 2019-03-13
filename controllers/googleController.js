@@ -5,25 +5,22 @@ export const googleAuth = (req, res, next) => {
   passport.authenticate('google',
     {
       scope: ['profile'],
-    }
-  )(req, res, next);
+    })(req, res, next);
 };
 
 export const googleRedirect = (req, res, next) => {
   passport.authenticate('google',
-    (err, user, token) => {
-      if (err || !user) {
-        return res.redirect('/auth');
-      }
+    {
+      successRedirect: '/',
+      failureRedirect: '/auth',
+    },
+    (err, user) => {
+      if (err) res.send(err);
 
-      req.login(user.displayName, { session: false }, err => {
-        if (err) res.send(err);
+      req.login(user, (error) => {
+        if (error) res.send(error);
 
         res.redirect('/');
-
-        next();
       });
-    },
-
-  )(req, res, next);
+    })(req, res, next);
 };

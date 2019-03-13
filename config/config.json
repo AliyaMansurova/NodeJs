@@ -1,4 +1,6 @@
 {
   "appName": "Node.js Homework Application​",
-  "secret": "secret"
+  "secret": "secret",
+  "postgres_uri": "postgres://postgres:postgres@localhost:32771",
+  "postgres_db": "nodejs"
 }

@@ -1,11 +1,22 @@
-const fs = require('fs');
-const usersPath = 'data/users.json';
+import {
+  getAll,
+  getOne,
+} from '../services/userService';
 
-function getUsers(req, res) {
-  fs.createReadStream(usersPath)
-    .pipe(res);
-}
-
-module.exports = {
-  getUsers
+export const getUsers = async (req, res, next) => {
+  try {
+    const users = await getAll();
+    return res.json(users);
+  } catch (err) {
+    return next(err);
+  }
+};
+export const getUserById = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const user = await getOne(userId);
+    return res.json(user);
+  } catch (err) {
+    return next(err);
+  }
 };

@@ -6,8 +6,8 @@ const product = {
   brand: 'Supreme',
   price: 99.99,
   options: [
-    {color: 'blue'},
-    {size: 'XL'},
+    { color: 'blue' },
+    { size: 'XL' },
   ],
 };
 

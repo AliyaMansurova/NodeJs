@@ -5,17 +5,19 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ."
   },
   "engines": {
-    "node": ">=9.7.0"
+    "node": ">=9.7.0",
+    "npm": ">=5.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AliyaMansurova/NodeJs.git"
   },
   "author": "Aliya_Mansurova <aliya_mansurova@epam.com>",
-  "license": "ISC",
+  "license": "UNLICENSED",
+  "private": true,
   "bugs": {
     "url": "https://github.com/AliyaMansurova/NodeJs/issues"
   },
@@ -26,10 +28,15 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "husky": "^1.3.1",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "commander": "^2.19.0",
     "csvtojson": "^2.0.8",
     "events": "^3.0.0",
     "express": "^4.16.4",
@@ -42,7 +49,14 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
+    "pg": "^7.8.1",
+    "sequelize": "^4.42.0",
     "through2": "^3.0.0",
     "uuid": "^3.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
   }
 }

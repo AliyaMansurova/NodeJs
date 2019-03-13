@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
   // const data = fs.readFileSync('./index.html').toString();
   // response.end(data.replace('{message}', message));
   const reader = fs.createReadStream('./index.html');
-  const transformStream = through(function(chunk, enc, next) {
+  const transformStream = through(function (chunk, enc, next) {
     const transformedChunk = chunk.toString().replace('{message}', message);
     this.push(transformedChunk);
     next();

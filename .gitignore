@@ -1,2 +1,5 @@
-.idea/
+.DS_Store
+.idea/dictionaries/
+.idea/httpRequests/
+.idea/workspace.xml
 node_modules/
