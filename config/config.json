@@ -2,5 +2,7 @@
   "appName": "Node.js Homework Application​",
   "secret": "secret",
   "postgres_uri": "postgres://postgres:postgres@localhost:32771",
-  "postgres_db": "nodejs"
+  "postgres_db": "nodejs",
+  "mongo_uri": "mongodb://localhost:32768",
+  "mongo_db": "nodejs"
 }
