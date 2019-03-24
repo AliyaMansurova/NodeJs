@@ -1,8 +1,11 @@
 import express from 'express';
 import {
-  getAllProducts, getReviewByProduct, getProductById, createProduct,
+  getAllProducts, getReviewByProduct, getProductById, createProduct, removeProduct,
 } from '../controllers/productController';
-import { getUserById, getUsers } from '../controllers/userController';
+import {
+  getAllCities, getCityById, createCity, removeCity, updateCity,
+} from '../controllers/cityController';
+import { getUserById, getUsers, removeUser } from '../controllers/userController';
 import auth from '../controllers/auth';
 import checkToken from '../middlewares/check-token';
 import { facebookAuth, facebookRedirect } from '../controllers/facebookController';
@@ -28,7 +31,17 @@ router.route('/products')
   .post(checkToken, createProduct);
 
 router.route('/products/:id')
-  .get(checkToken, getProductById);
+  .get(checkToken, getProductById)
+  .delete(checkToken, removeProduct);
+
+router.route('/cities')
+  .get(checkToken, getAllCities)
+  .post(checkToken, createCity);
+
+router.route('/cities/:id')
+  .get(checkToken, getCityById)
+  .put(checkToken, updateCity)
+  .delete(checkToken, removeCity);
 
 router.route('/products/:id/reviews')
   .get(checkToken, getReviewByProduct);
@@ -37,6 +50,7 @@ router.route('/users')
   .get(checkToken, getUsers);
 
 router.route('/users/:id')
-  .get(checkToken, getUserById);
+  .get(checkToken, getUserById)
+  .delete(checkToken, removeUser);
 
 module.exports = router;
