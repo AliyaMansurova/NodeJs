@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "swagger:start": "nodemon --exec babel-node swagger/app.js"
   },
   "engines": {
     "node": ">=9.7.0",
@@ -32,7 +33,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "husky": "^1.3.1",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "swagger-editor": "^3.6.26"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -52,6 +54,7 @@
     "passport-twitter": "^1.0.4",
     "pg": "^7.8.1",
     "sequelize": "^4.42.0",
+    "swagger-express-mw": "^0.1.0",
     "through2": "^3.0.0",
     "uuid": "^3.3.2"
   },

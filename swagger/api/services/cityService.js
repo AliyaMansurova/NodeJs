@@ -1,4 +1,4 @@
-import Cities from '../../models/mongoose/City';
+import Cities from '../models/City';
 
 export const getAll = () => Cities.find({});
 

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
-  id: { type: Number, required: true },
+  id: { type: String, required: true },
   productId: { type: Number, required: true },
   review: { type: String, required: true },
   lastModifiedDate: { type: String, required: false },

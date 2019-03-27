@@ -1,0 +1,4 @@
+{
+  "mongo_uri": "mongodb://localhost:32768",
+  "mongo_db": "nodejs"
+}

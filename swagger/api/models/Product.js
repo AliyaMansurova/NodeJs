@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
-  id: { type: Number, required: true },
+const ProductSchema = new Schema({
+  id: { type: String, required: true },
   name: { type: String, required: true },
   lastModifiedDate: { type: String, required: false },
 });
 
-const Users = mongoose.model('users', UserSchema);
+const Products = mongoose.model('products', ProductSchema);
 
-export default Users;
+export default Products;

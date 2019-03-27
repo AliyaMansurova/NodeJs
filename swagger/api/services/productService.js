@@ -1,5 +1,5 @@
-import Products from '../../models/mongoose/Product';
-import Reviews from '../../models/mongoose/Review';
+import Products from '../models/Product';
+import Reviews from '../models/Review';
 
 export const getAll = () => Products.find({});
 
